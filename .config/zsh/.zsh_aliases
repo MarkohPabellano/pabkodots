@@ -85,6 +85,7 @@ alias newtag='git tag -a'
 
 #--Bare Git Repository Aliases--#
 alias conpabko="/usr/bin/git --git-dir=$HOME/pabkodots/ --work-tree=$HOME"
+alias comarkwall="/usr/bin/git --git-dir=$HOME/pabkodots/ --work-tree=$HOME"
 alias nosuntracked="config --local status.showUntrackedFiles no"
 
 #--get error messages from journalctl--#
