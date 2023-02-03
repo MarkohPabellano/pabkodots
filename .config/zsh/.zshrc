@@ -10,7 +10,8 @@ source ~/.config/zsh/.zsh_aliases # -- Aliases -- #
 #--History in cache directory--#
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.config/zsh/.zsh_history
+setopt SHARE_HISTORY
 
 #--PLUGINS--#
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
