@@ -4,7 +4,7 @@ ZDOTDIR=$HOME/.config/zsh
 source ~/.config/zsh/.zshrc
 
 # Path Export 
-export PATH="$HOME/.local/bin:$PATH" 
+#export PATH="$HOME/.local/bin:$PATH"
 
 
 # Cool Programs to Start when opening a Terminal
