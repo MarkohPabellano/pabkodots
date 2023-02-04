@@ -85,6 +85,10 @@
         org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
         org-log-done 'time
         org-hide-emphasis-markers t
+        org-return-follows-link t
+        org-agenda-tags-column 7
+        org-deadline-warning-days 30
+        org-use-speed-commands t
         ;; ex. of org-link-abbrev-alist in action
         ;; [[arch-wiki:Name_of_Page][Description]]
         org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
@@ -96,17 +100,21 @@
         org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
           '((sequence
              "TODO(t)"           ; A task that is ready to be tackled
-             "PROJ(p)"           ; A project that contains other tasks
-             "GOAL(g)"           ; Goal
-             "ONHOLD(o)"         ; Something is holding up this task
-             "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+             "NEXT(n)"           ; Task Ready Soon
              "DONE(d)"           ; Task has been completed
-             "CANCELLED(c)" )))) ; Task has been cancelled
+             "WAITING(w@/!)"     ; Waiting something for the task
+             "HOLD(h@/!)"        ; Task on Hold
+             "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+             "CANCELLED(c@/!)" )))) ; Task has been cancelled
 
 ;; Org-Agenda
+(setq org-agenda-span 30)
 
 (after! org
-  (setq org-agenda-files '("~/Org/org-agenda/markagenda.org")))
+  (setq org-agenda-files '("~/Org/org-agenda/inbox.org"
+                           "~/Org/org-agenda/projects.org"
+                           "~/Org/org-agenda/goals.org"
+                           "~/Org/org-agenda/events.org")))
 
 (setq
    ;; org-fancy-priorities-list '("[A]" "[B]" "[C]")
@@ -118,23 +126,25 @@
      (?C :foreground "#c678dd" :weight bold))
    org-agenda-block-separator 8411)
 
-(setq org-agenda-custom-commands
-      '(("v" "A better agenda view"
-         ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-          (tags "PRIORITY=\"B\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
-          (tags "PRIORITY=\"C\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
-         ;; (tags ""
-        ;;        ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-        ;;         (org-agenda-overriding-header "Tasks marked with customtag:")))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 4)))
 
-          (agenda "")
-          (alltodo "")))))
+(setq org-agenda-custom-commands
+      '((" " "Agenda"
+         ((agenda ""
+                  ((org-agenda-span 'day)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Unscheduled tasks")
+                 (org-agenda-files '("~/Org/org-agenda/inbox.org"))
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))
+                 ))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Unscheduled project tasks")
+                 (org-agenda-files '("~/Org/org-agenda/projects.org"))
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))
+                 ))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Goals")
+                 (org-agenda-files '("~/Org/org-agenda/goals.org"))))))))
 
 ;; Org-Fonts
 
