@@ -79,7 +79,7 @@
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
   (setq org-directory "~/Org/"
-        ;;org-default-notes-file (expand-file-name "notes.org" org-directory)
+        org-default-notes-file (expand-file-name "notes.org" org-directory)
         org-ellipsis " ▼ "
         ;;org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
         org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
@@ -413,7 +413,6 @@
 (after! org
   (setq org-roam-directory "~/Org/org-roam/"
        ;;org-roam-graph-viewer "/usr/bin/brave"
-        org-fold-core-style "overlays"
         org-roam-completion-everywhere t
         org-roam-capture-templates
                 '(
