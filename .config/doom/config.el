@@ -80,13 +80,12 @@
 (after! org
   (setq org-directory "~/Org/"
         org-default-notes-file (expand-file-name "notes.org" org-directory)
-        org-ellipsis " ▼ "
+        org-ellipsis " ⮷ "
         ;;org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
         org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
         org-log-done 'time
         org-hide-emphasis-markers t
         org-return-follows-link t
-        org-agenda-tags-column 7
         org-deadline-warning-days 30
         org-use-speed-commands t
         ;; ex. of org-link-abbrev-alist in action
@@ -108,7 +107,12 @@
              "CANCELLED(c@/!)" )))) ; Task has been cancelled
 
 ;; Org-Agenda
-(setq org-agenda-span 30)
+;;
+(after! org
+  (setq org-agenda-span 90
+   org-agenda-tags-column 7
+   org-agenda-start-day nil  ; today
+))
 
 (after! org
   (setq org-agenda-files '("~/Org/org-agenda/inbox.org"
