@@ -47,7 +47,7 @@ bar = Bar([
     # Prompt(foreground=gruvbox['fg']),
 
     TaskList(
-        foreground=gruvbox['fg'],
+        foreground=gruvbox['bg'],
         icon_size = 1,
         #font = "JetBrainsMono Nerd Font",
         #background
@@ -114,7 +114,7 @@ bar = Bar([
     #Spacer(length=3),
     
 ],
-    margin=[10, 10, 5, 10],
+    margin=[10, 10, 10, 10],
     background='#00000000',
     opacity=1,
     size=20,

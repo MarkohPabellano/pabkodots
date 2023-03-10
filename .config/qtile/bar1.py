@@ -70,8 +70,16 @@ bar = Bar([
 
     left_arrow(gruvbox['bg0'], gruvbox['fg0']),
     Systray(
-        background=gruvbox['fg0']
+        background=gruvbox['fg0'],
     ),
 
-    Spacer(length=20, background=gruvbox['fg0'])
-], background=gruvbox['bg'], size=26, margin=9)
+    Spacer(
+        length=20,
+        background=gruvbox['fg0']
+    )
+],
+    margin=[10, 10, 10, 10],
+    background='#00000000',
+    opacity=1,
+    size=20,
+)

@@ -208,9 +208,7 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(bottom=bar)
-]
+screens = [Screen(top=bar)]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
